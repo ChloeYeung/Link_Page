@@ -1,8 +1,9 @@
 //State
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 
 // react-router-dom
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
+
 
 // Bootstrap 
 import Card from 'react-bootstrap/Card';
@@ -16,10 +17,10 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons'
 
 // File
 import { links } from '../links';
-import BackAndForward from '../Components/BackAndForward'
+import BackAndForward from '../Components/BackAndForward';
+import LinkDetail from '../Components/LinkDetail';
 
-
-export default function LinkList(props) {
+export default function LinkList() {
   //State
   const [linkState, setLinkState] = useState(links);
   const [addLink, setLink] = useState({});
@@ -57,14 +58,21 @@ export default function LinkList(props) {
     let newObject = [...linkState];
     newObject.splice(i, 1);
     setLinkState(newObject);
+  
   }
+  // useEffect(()=>{
+  //   console.log(linkState)
+  // },[linkState])
 
+  
 
   return (
     <>
+    <LinkDetail idd={linkState}></LinkDetail>
+
       <h2> <span style={{ color: "red" }}> {fYoutube}</span> Top 5 Youtube video links</h2>
 
-      <Outlet />
+    
 
       <BackAndForward />
 
@@ -80,6 +88,7 @@ export default function LinkList(props) {
               //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
               // })
               .map((link, i) => (
+                
                 <ListGroup.Item key={i}>
                   <h5>Platform: {link.title}</h5>
                   <p> Description: {link.description}</p>

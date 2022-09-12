@@ -20,7 +20,7 @@ function App() {
           </Route>
         </Route>
         <Route path="link" element={<LinkList />} >
-          <Route path=":id" element={<LinkDetail />} />
+          <Route path=":id" element={<LinkDetail id="00"/>} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>
