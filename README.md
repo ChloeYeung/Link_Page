@@ -8,7 +8,7 @@
 
 :cloud: Home Page: Profile, Pokemon API
 
-<img width="598" alt="Screenshot 2022-10-13 at 6 07 43 PM" src="https://user-images.githubusercontent.com/106992258/195570682-5b42741e-e541-4fbc-95c5-72075b6b21f2.png">
+<img width="596" alt="Screenshot 2022-10-13 at 6 19 45 PM" src="https://user-images.githubusercontent.com/106992258/195571486-5432e774-5a1f-4c20-b556-74064999fcb0.png">
 
 
 <img width="497" alt="Screenshot 2022-10-13 at 6 08 31 PM" src="https://user-images.githubusercontent.com/106992258/195570702-864d668a-01bb-4851-979d-78f00c9a4299.png">
