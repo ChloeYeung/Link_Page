@@ -70,7 +70,7 @@ export default function LinkList() {
     <>
       <LinkDetail idd={linkState}></LinkDetail>
 
-      <h2>
+      <h2 className="container">
         {" "}
         <span style={{ color: "red" }}> {fYoutube}</span> Top 5 Youtube video
         links
@@ -176,6 +176,7 @@ export default function LinkList() {
           </Form>
         </div>
       </div>
+      <br />
     </>
   );
 }
