@@ -4,7 +4,6 @@ import error from '../images/error.jpg';
 import Alert from 'react-bootstrap/Alert';
 
 
-
 export default function Error() {
     let location = useLocation();
     return (

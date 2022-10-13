@@ -10,6 +10,7 @@ import Profile from './Pages/Profile';
 import PokeAPI from './Components/PokeAPI';
 
 function App() {
+  document.body.classList.add('fontStyle');
   return (
     <div className="App">
       <ShowNavbar />
@@ -20,7 +21,7 @@ function App() {
           </Route>
         </Route>
         <Route path="link" element={<LinkList />} >
-          <Route path=":id" element={<LinkDetail id="00"/>} />
+          <Route path=":id" element={<LinkDetail />} />
         </Route>
         <Route path="*" element={<Error />} />
       </Routes>

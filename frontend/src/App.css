@@ -1,3 +1,7 @@
+.fontStyle {
+    font-family: 'Montserrat', sans-serif;
+}
+
 #errorImg {
     max-width: 150px;
     border-radius: 50%;
@@ -9,27 +13,42 @@
 
 #apiCard {
     background: #9796f0;
-    /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #fbc7d4, #9796f0);
-    /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #fbc7d4, #9796f0);
-    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 #apiCardBtn {
-    background: #4e54c8;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #8f94fb, #4e54c8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    background: #4e54c8;
+    background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);
+    background: linear-gradient(to right, #8f94fb, #4e54c8);
     border: #CF8BF3;
 }
 
-#navbarImage{
+#navbarImage {
     max-height: 30px;
 }
 
-#toastApi{
-width: 200px;
+#toastApi {
+    width: 200px;
+}
 
+#addFormCard {
+    border: rgba(103, 103, 103, 0.481) 1px solid;
+}
 
+#addFormCardInner {
+    margin: 10px;
+}
+
+#addFormCardTitle {
+    margin: 10px;
+}
+
+#linksCard {
+    margin: 10px;
+}
+
+.navBarStyle {
+    text-decoration: none;
+    color: grey;
 }

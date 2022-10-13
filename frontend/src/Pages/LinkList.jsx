@@ -1,24 +1,27 @@
 //State
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 // react-router-dom
-import { Link, Outlet, useParams } from 'react-router-dom';
-
-
-// Bootstrap 
-import Card from 'react-bootstrap/Card';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
-
+import { Link, Outlet, useParams } from "react-router-dom";
+// Bootstrap
+import Card from "react-bootstrap/Card";
+import ListGroup from "react-bootstrap/ListGroup";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 // Font Awesome
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faInfo } from '@fortawesome/free-solid-svg-icons'
-import { faYoutube } from '@fortawesome/free-brands-svg-icons'
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faInfo } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 // File
-import { links } from '../links';
-import BackAndForward from '../Components/BackAndForward';
-import LinkDetail from '../Components/LinkDetail';
+import { links } from "../links";
+import BackAndForward from "../Components/BackAndForward";
+import LinkDetail from "../Components/LinkDetail";
+//react-icon
+import { MdOutlineTitle, MdOutlineDescription } from "react-icons/md";
+import { BiCodeCurly } from "react-icons/bi";
+import { AiFillDelete, AiOutlineInfoCircle } from "react-icons/ai";
+//jquery
+import $ from 'jquery';
 
 export default function LinkList() {
   //State
@@ -26,25 +29,25 @@ export default function LinkList() {
   const [addLink, setLink] = useState({});
 
   // Font Awesome
-  const fBookOpen = <FontAwesomeIcon icon={faInfo} />
-  const fYoutube = <FontAwesomeIcon icon={faYoutube} />
+  const fBookOpen = <FontAwesomeIcon icon={faInfo} />;
+  const fYoutube = <FontAwesomeIcon icon={faYoutube} />;
 
   //add link function
   let handleAddTitle = function (event) {
-    let addTitle = { ...addLink, title: event.target.value }
+    let addTitle = { ...addLink, title: event.target.value };
     setLink(addTitle);
-  }
+  };
 
   let handleAddDescription = function (event) {
-    let addDescription = { ...addLink, description: event.target.value }
+    let addDescription = { ...addLink, description: event.target.value };
     setLink(addDescription);
-  }
+  };
 
   let handleAddUrl = function (event) {
-    let addUrl = { ...addLink, url: event.target.value }
+    let addUrl = { ...addLink, url: event.target.value };
     console.log(addUrl);
     setLink(addUrl);
-  }
+  };
 
   let handleSubmit = function () {
     let a = [];
@@ -52,94 +55,127 @@ export default function LinkList() {
     let originUrl = linkState;
     let b = originUrl.concat(a);
     setLinkState(b);
-  }
+    $("#inputValue1").val("");
+    $("#inputValue2").val("");
+    $("#inputValue3").val("");
+  };
 
   let handleDeleteLink = function (i) {
     let newObject = [...linkState];
     newObject.splice(i, 1);
     setLinkState(newObject);
-  
-  }
-  // useEffect(()=>{
-  //   console.log(linkState)
-  // },[linkState])
-
-  
+  };
 
   return (
     <>
-    <LinkDetail idd={linkState}></LinkDetail>
+      <LinkDetail idd={linkState}></LinkDetail>
 
-      <h2> <span style={{ color: "red" }}> {fYoutube}</span> Top 5 Youtube video links</h2>
-
-    
-
-      <BackAndForward />
+      <h2>
+        {" "}
+        <span style={{ color: "red" }}> {fYoutube}</span> Top 5 Youtube video
+        links
+      </h2>
 
       <br />
 
-      <div className="d-flex align-self-center justify-content-center text-center">
-        <Card style={{ width: '30rem' }} >
+      <div className="container d-flex align-self-center justify-content-center text-center">
+        <Card style={{ width: "50rem" }}>
           <ListGroup variant="flush">
-            {linkState
-              //    .sort(function (a, b) {
-              //   let textA = a.title.toUpperCase();
-              //   let textB = b.title.toUpperCase();
-              //   return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
-              // })
-              .map((link, i) => (
-                
-                <ListGroup.Item key={i}>
-                  <h5>Platform: {link.title}</h5>
-                  <p> Description: {link.description}</p>
-                  <Button variant="outline-primary">
-                    <Link to={`${i}`}>{fBookOpen} Info </Link>
-                  </Button>
-                  <Button onClick={() => { handleDeleteLink(i) }} variant="outline-danger">
-                    Delete Link
-                  </Button>
-                  <br />
-                  {/* <p
-                  onClick={() =>
-                    navigate(`/link/${i}`)
-                  }
-                >
-                  go to that page
-                </p> */}
-                </ListGroup.Item>
-              ))}
+            {linkState.map((link, i) => (
+              <ListGroup.Item key={i} id="linksCard">
+                <div className="row">
+                  <div className="col-10">
+                    <h5>Platform: {link.title}</h5>
+                    <p> Description: {link.description}</p>
+                  </div>
+                  <div className="col">
+                    <div className="row">
+                      <Button variant="outline-primary">
+                        <Link to={`${i}`}>
+                          <AiOutlineInfoCircle />{" "}
+                        </Link>
+                      </Button>
+                    </div>
+
+                    <div className="row">
+                      <Button
+                        onClick={() => {
+                          handleDeleteLink(i);
+                        }}
+                        variant="outline-danger"
+                      >
+                        <AiFillDelete />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </ListGroup.Item>
+            ))}
           </ListGroup>
         </Card>
       </div>
 
       <br />
 
-      <div className="d-flex align-self-center justify-content-center text-center">
+      <BackAndForward />
 
-        <Card>
-          <Card.Body>
-            <Card.Title> Add Link </Card.Title>
-
-            <form className="d-flex">
-
-              <Card.Text>
-                <label> Title <input name="title" type="text" onChange={handleAddTitle} /> </label>
-              </Card.Text>
-
-              <Card.Text>
-                <label> Description<input name="description" type="text" onChange={handleAddDescription} /> </label>
-              </Card.Text>
-
-              <Card.Text>
-                <label> URL <input name="url" type="text" onChange={handleAddUrl} /> </label>
-              </Card.Text>
-
-            </form>
-            <Button onClick={handleSubmit} variant="outline-warning" className="text-center "> Submit</Button>
-          </Card.Body>
-        </Card>
-      </div>
       <br />
+
+      <div className="container" id="addFormCard">
+        <div className="row text-center" id="addFormCardTitle">
+          <h5>
+            <b> Add Link</b>
+          </h5>
+        </div>
+        <div className="row">
+          <Form id="addFormCardInner">
+            <Form.Group className="mb-3" >
+              <Form.Label>
+                <MdOutlineTitle /> Title
+              </Form.Label>
+              <Form.Control
+                id="inputValue1"
+                name="title"
+                type="text"
+                onChange={handleAddTitle}
+                placeholder="Title"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3" >
+              <Form.Label>
+                <MdOutlineDescription /> Description
+              </Form.Label>
+              <Form.Control
+                id="inputValue2"
+                name="description"
+                type="text"
+                onChange={handleAddDescription}
+                placeholder="Description"
+              />
+            </Form.Group>
+
+            <Form.Group className="mb-3">
+              <Form.Label>
+                <BiCodeCurly /> URL
+              </Form.Label>
+              <Form.Control
+                id="inputValue3"
+                name="url"
+                type="text"
+                onChange={handleAddUrl}
+                placeholder="URL"
+              />
+            </Form.Group>
+
+            <div className="text-center">
+              <Button onClick={handleSubmit} variant="outline-dark">
+                Submit
+              </Button>
+            </div>
+          </Form>
+        </div>
+      </div>
     </>
-  )
+  );
 }

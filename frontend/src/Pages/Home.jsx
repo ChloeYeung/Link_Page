@@ -20,7 +20,6 @@ export default function Home() {
 
                 <BackAndForward className=" row-2 " />
 
-
         </div >
     )
 }
